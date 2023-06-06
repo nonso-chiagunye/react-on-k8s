@@ -23,3 +23,15 @@ after_success:
   - docker push nonsochiagunye/multi-nginx
   - docker push nonsochiagunye/multi-server
   - docker push nonsochiagunye/multi-worker
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-1"
+  app: "multi-docker"
+  env: "multi-docker-env"
+  bucket_name: "elasticbeanstalk-us-east-1-149742781583"
+  bucket_path: "docker-multi"
+  on:
+    branch: main
+  access_key_id: $AWS_ACCESS_KEY 
+  secret_access_key: $AWS_SECRET_KEY
